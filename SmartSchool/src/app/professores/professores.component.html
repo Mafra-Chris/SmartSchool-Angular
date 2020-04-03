@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-sm-12" *ngIf="profSelecionado">
+    <div class="row">
+      <div class="mr-auto">
+        <app-titulo [titulo]="'Professor: ' + profSelecionado.id"></app-titulo>
+      </div>
+      <div class="mt-1">
+        <button class="btn btn-outline-danger" (click)="voltar()">Lista de Professores</button>
+      </div>
+    </div>
+    
+    <form [formGroup]="profForm" (submit)="profSubmit()">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Nome</label>
+        <input type="text" formControlName="nome" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Disciplina</label>
+        <input type="text" formControlName="disciplina" class="form-control" >
+      </div>
+      <div class="form-group">
+        <hr>
+        <button class="btn btn-success" [disabled]="!profForm.valid">Enviar</button>
+      </div>
+    </form>
+  </div>
+  
+  <div  class="col-sm-12" *ngIf="!profSelecionado">
+    <app-titulo [titulo] = 'titulo'></app-titulo>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Visualizar</th>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Disciplina</th>
+          <th scope="col">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prof of professores">
+          <td><button (click)="profSelect(prof)" class="text-dark btn btn-sm btn-outline-warning">Detalhes</button></td>
+          <th scope="row">{{prof.id}}</th>
+          <td>{{prof.nome}}</td>
+          <td>{{prof.disciplina}}</td>
+          <td>
+          <div class="btn-group">
+            <button class="btn btn-sm btn-outline-primary" (click)="openModal(template)">Alunos</button>
+          </div>
+        </td>
+      </tr>  
+    </tbody>
+  </table>
+</div>
+</div>
+ 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+</ng-template>
