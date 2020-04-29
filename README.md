@@ -1,3 +1,3 @@
 # SmartSchool-Angular
-Primeira vez testando o Angular
-First time using angular
+Primeira vez testando o Angular 
+/ First time using angular
